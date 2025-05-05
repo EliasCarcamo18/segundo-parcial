@@ -1,0 +1,52 @@
+import random
+
+def juego_climatico():
+    print("=== Juego Predictivo del Clima ===")
+
+    
+    while True:
+        try:
+            n1 = int(input("Ingrese el primer número del rango de temperatura: "))
+            n2 = int(input("Ingrese el segundo número del rango de temperatura: "))
+            if n1 <= n2:
+                print("Error: El primer número debe ser mayor que el segundo. Inténtalo nuevamente.\n")
+            else:
+                break
+        except ValueError:
+            print("Por favor, ingresa solo números enteros.\n")
+
+    
+    promedio = (n1 + n2) / 2
+
+    
+    ajuste = (n1 - n2) * 0.25
+
+   
+    temperatura_real = random.uniform(promedio - ajuste, promedio + ajuste)
+    temperatura_real = round(temperatura_real, 2)  # Redondear a 2 decimales
+
+    
+    intentos = 3
+    acerto = False
+
+    print("\n¡Adivina la temperatura estimada!")
+    print(f"Tienes {intentos} intentos. El valor estará entre {round(promedio - ajuste, 2)} y {round(promedio + ajuste, 2)} grados.")
+
+    while intentos > 0:
+        try:
+            prediccion = float(input(f"\nIntento {4 - intentos}: Ingresa tu predicción: "))
+            if abs(prediccion - temperatura_real) <= 1:
+                print("¡Correcto! Estuviste muy cerca o acertaste.")
+                acerto = True
+                break
+            else:
+                print("No es correcto.")
+        except ValueError:
+            print("Por favor, ingresa un número válido.")
+        intentos -= 1
+
+    if not acerto:
+        print(f"\nSe acabaron los intentos. La temperatura estimada era: {temperatura_real}°C")
+
+
+juego_climatico()
