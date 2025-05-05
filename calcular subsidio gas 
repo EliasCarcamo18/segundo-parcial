@@ -1,0 +1,39 @@
+def calcular_subsidio_gas():
+    print("==== ⛽Cálculo de Subsidio de Gas⛽ ====")
+
+    try:
+        quintil = int(input("Ingrese el quintil de ingresos de su familia (1 a 5): "))
+        if quintil < 1 or quintil > 5:
+            print("El quintil debe estar entre 1 y 5.")
+            return
+
+        empleo = input("¿Está actualmente desempleado o empleado? (desempleado/empleado): ").strip().lower()
+
+        if empleo not in ["desempleado", "empleado"]:
+            print("Estado laboral inválido. Debe ingresar 'desempleado' o 'empleado'.")
+            return
+
+        
+        subsidio = 0
+
+        if quintil in [1, 2]:
+            if empleo == "desempleado":
+                subsidio = 10000
+            else:
+                subsidio = 8000
+        elif quintil == 3:
+            if empleo == "desempleado":
+                subsidio = 6000
+            else:
+                subsidio = 4000
+        elif quintil in [4, 5] and empleo == "empleado":
+            subsidio = 1500
+
+        
+        print("\n--- Resultado del Cálculo ---")
+        print(f"Subsidio de gas mensual: CLP {subsidio:,}")
+
+    except ValueError:
+        print("Entrada inválida. Asegúrese de ingresar números donde corresponda.")
+
+calcular_subsidio_gas()
