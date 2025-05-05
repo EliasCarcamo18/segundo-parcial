@@ -1,0 +1,30 @@
+# Programa para calcular descuento según la calificación del estudiante
+
+print("Bienvenido al programa de inscripción")
+print("Curso: Python para principiantes")
+print("Valor del curso: $200.000\n")
+
+try:
+    nota = float(input("Por favor, ingresa tu calificación final (de 1.0 a 7.0): "))
+    precio_curso = 200000
+    descuento = 0
+
+    
+    if nota >= 6:
+        descuento = 0.20
+    elif nota >= 5:
+        descuento = 0.15
+    elif nota >= 4:
+        descuento = 0.05
+    else:
+        descuento = 0.0
+
+    monto_descuento = precio_curso * descuento
+    total_a_pagar = precio_curso - monto_descuento
+
+    
+    print(f"\nTu descuento es de: ${int(monto_descuento)}")
+    print(f"Total a pagar por el curso: ${int(total_a_pagar)}")
+
+except ValueError:
+    print("Error: debes ingresar un número válido como calificación.")
