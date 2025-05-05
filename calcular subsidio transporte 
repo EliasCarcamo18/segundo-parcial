@@ -1,0 +1,51 @@
+def calcular_subsidio_transporte():
+    print("=== Cálculo de Subsidio de Transporte Estudiantil DUOC UC 2025 ===")
+
+    try:
+       
+        puntaje = int(input("Ingrese su puntaje de admisión (450 a 850): "))
+        if puntaje < 450 or puntaje > 850:
+            print("Error: Puntaje fuera de rango.")
+            return
+
+        distancia = float(input("Ingrese la distancia desde su hogar a Duoc (en km): "))
+        rural = input("¿Vive en zona rural? (si/no): ").strip().lower()
+
+        
+        subsidio_base = 0
+
+        if puntaje > 700:
+            if distancia > 20:
+                subsidio_base = 180000
+            elif 10 <= distancia <= 20:
+                subsidio_base = 130000
+        elif 600 <= puntaje <= 700:
+            if distancia > 20:
+                subsidio_base = 100000
+            elif 10 <= distancia <= 20:
+                subsidio_base = 80000
+        else:
+            print("No corresponde subsidio base según puntaje.")
+            return
+
+        
+        bono_adicional = 0
+
+        if rural == "si":
+            bono_adicional += 40000
+            if puntaje > 650:
+                bono_adicional += 20000
+
+        
+        total_subsidio = subsidio_base + bono_adicional
+
+        print("\n--- Resultado del Cálculo ---")
+        print(f"Subsidio base: CLP {subsidio_base:,}")
+        print(f"Bonos adicionales: CLP {bono_adicional:,}")
+        print(f"Total mensual a entregar: CLP {total_subsidio:,}")
+
+    except ValueError:
+        print("Error: Ingrese valores válidos (números donde corresponda).")
+
+
+calcular_subsidio_transporte()
